@@ -1,9 +1,9 @@
-import mutagen
+import ffmpeg
 
 
 def media_duration(file_path: str):
-    file = mutagen.File(file_path)
-    duration = file.info.length
+    probe = ffmpeg.probe(file_path)
+    duration = float(probe['format']['duration'])
     return duration
 
 
